@@ -90,7 +90,7 @@
 }
 
 - (void)sharePdf{
-    NSString *filePath = [NSHomeDirectory() stringByAppendingPathComponent:@"Documents/new.Pdf"];
+    NSString *filePath = [NSHomeDirectory() stringByAppendingPathComponent:@"Documents/testFile.pdf"];
     
     UIDocumentInteractionController *ctrl = [UIDocumentInteractionController interactionControllerWithURL:[NSURL fileURLWithPath:filePath]];
     

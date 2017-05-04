@@ -13,17 +13,8 @@
 @implementation OCPDFGenerator
 
 +(NSString *)generatePDFFromAttributedString:(NSAttributedString *)str {
-    //create a CFUUID - it knows how to create unique identifiers
-    CFUUIDRef newUniqueID = CFUUIDCreate (kCFAllocatorDefault);
-    
-    //create a string from unique identifier
-    NSString * newUniqueIDString = (NSString *)CFBridgingRelease(CFUUIDCreateString(kCFAllocatorDefault, newUniqueID));
-    
-//    NSString *fileName = [NSString stringWithFormat:@"%@.pdf", newUniqueIDString];
-    NSString *fileName = @"new.Pdf";
-//    CFRelease(newUniqueID);
-//    CFRelease((__bridge CFTypeRef)(newUniqueIDString)
-//              );
+   
+    NSString *fileName = @"testFile.pdf";
     
     NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
     NSString *newFilePath = [[paths objectAtIndex:0] stringByAppendingPathComponent:fileName];
@@ -31,8 +22,6 @@
     int fontSize = 12;
     NSString *font = @"Verdana";
     UIColor *color = [UIColor blackColor];
-    
-//    NSString *content = str;
     
     int DOC_WIDTH = 612;
     int DOC_HEIGHT = 792;
@@ -74,7 +63,6 @@
     
     do {
         UIGraphicsBeginPDFPage();
-        
         CGMutablePathRef path = CGPathCreateMutable();
         
         if(pageCount == 1) {
@@ -106,7 +94,6 @@
             currentRange.location += currentRange.length;
             currentRange.length = 0;
             
-//            CFRelease(frame);       
         }
         
         // If we're at the end of the text, exit the loop.
@@ -117,9 +104,6 @@
     } while(!done);
     
     UIGraphicsEndPDFContext();
-    
-//    [fileMetaData release];
-//    CFRelease(framesetter);
     
     return newFilePath;
 }
