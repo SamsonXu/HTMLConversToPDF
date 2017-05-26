@@ -10,9 +10,14 @@
 #import "OCPDFGenerator.h"
 #import "MBProgressHUD.h"
 #import "MBProgressHUD+MJ.h"
+#import "UIWebView+ConverToData.h"
 @interface ViewController ()<UIDocumentInteractionControllerDelegate>
 
 @property (nonatomic, copy) NSString *htmlStr;
+
+@property (nonatomic, strong) UIWebView *webView;
+
+@property (nonatomic, strong) UIDocumentInteractionController *documentInterCtrl;
 
 @end
 
@@ -22,17 +27,17 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view, typically from a nib.
     
-    UIWebView *webView = [[UIWebView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height)];
+    _webView = [[UIWebView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height)];
     
     //Use the below code for HTML
     NSString *readmePath = [[NSBundle mainBundle] pathForResource:@"test" ofType:@"html"];
     _htmlStr = [NSString stringWithContentsOfFile:readmePath encoding:NSUTF8StringEncoding error:nil];
    //    NSLog(@"FileExists:%d", [[NSFileManager defaultManager] fileExistsAtPath:path]);
-    [webView loadHTMLString:_htmlStr baseURL:nil];
+    [_webView loadHTMLString:_htmlStr baseURL:nil];
     
-    [self.view addSubview:webView];
+    [self.view addSubview:_webView];
 
-    NSArray *itemTitles = @[@"save",@"share"];
+    NSArray *itemTitles = @[@"share",@"save"];
     NSMutableArray *itemArray = [[NSMutableArray alloc]init];
     for (int i = 0; i < itemTitles.count; i++) {
         UIButton *btn = [[UIButton alloc]initWithFrame:CGRectMake(i*60, 0, 60, 30)];
@@ -52,22 +57,18 @@
 - (void)rightItemClick:(UIButton *)sender{
     
     if (sender.tag == 100) {
-        [MBProgressHUD showMessage:@"正在保存为PDF文件"];
-        
-        [OCPDFGenerator generatePDFFromHTMLString:_htmlStr];
-        [MBProgressHUD hideHUD];
-        [MBProgressHUD showAlertMessage:@"保存成功"];
+        [self sharePdf];
         
     }else if (sender.tag == 101){
         
-        [self savePdf];
+        [self savePDFMethodTwo];
     }
     
     
     
 }
 
-- (void)savePdf{
+- (void)savePDFMethodOne{
     
     UIAlertController *alertCtrl = [UIAlertController alertControllerWithTitle:@"温馨提示" message:@"保存为PDF文件到本地并分享?" preferredStyle:UIAlertControllerStyleAlert];
     UIAlertAction *action1 = [UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
@@ -89,15 +90,31 @@
    
 }
 
+- (void)savePDFMethodTwo{
+    [MBProgressHUD showMessage:@"正在保存"];
+    
+    NSData *data = [_webView converToPDF];
+    NSString *path = [NSHomeDirectory() stringByAppendingPathComponent:[NSString stringWithFormat:@"Documents/testFile.pdf"]];
+    
+    BOOL result = [data writeToFile:path atomically:YES];
+    [MBProgressHUD hideHUD];
+
+    if (result) {
+        [MBProgressHUD showAlertMessage:@"保存成功"];
+    }else{
+        [MBProgressHUD showAlertMessage:@"保存失败"];
+    }
+}
+
 - (void)sharePdf{
     NSString *filePath = [NSHomeDirectory() stringByAppendingPathComponent:@"Documents/testFile.pdf"];
     
-    UIDocumentInteractionController *ctrl = [UIDocumentInteractionController interactionControllerWithURL:[NSURL fileURLWithPath:filePath]];
+    _documentInterCtrl = [UIDocumentInteractionController interactionControllerWithURL:[NSURL fileURLWithPath:filePath]];
     
-    ctrl.delegate = self;
+    _documentInterCtrl.delegate = self;
     
-    ctrl.UTI = @"com.adobe.pdf";
-    [ctrl presentOpenInMenuFromRect:CGRectZero inView:self.view animated:YES];
+    _documentInterCtrl.UTI = @"com.adobe.pdf";
+    [_documentInterCtrl presentOpenInMenuFromRect:CGRectZero inView:self.view animated:YES];
 }
 
 - (void)didReceiveMemoryWarning {

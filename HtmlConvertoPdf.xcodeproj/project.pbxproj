@@ -21,6 +21,7 @@
 		735074CA1EB9BAFB00DACA97 /* DTFoundation.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 735074C51EB9BADF00DACA97 /* DTFoundation.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		735074CD1EB9BB3800DACA97 /* OCPDFGenerator.m in Sources */ = {isa = PBXBuildFile; fileRef = 735074CC1EB9BB3800DACA97 /* OCPDFGenerator.m */; };
 		735074CF1EB9BD9300DACA97 /* test.html in Resources */ = {isa = PBXBuildFile; fileRef = 735074CE1EB9BD9300DACA97 /* test.html */; };
+		736955DA1ED7DA12002BFCEB /* UIWebView+ConverToData.m in Sources */ = {isa = PBXBuildFile; fileRef = 736955D91ED7DA12002BFCEB /* UIWebView+ConverToData.m */; };
 		73CB65DC1EBACAD3001B6EFD /* MBProgressHUD+MJ.m in Sources */ = {isa = PBXBuildFile; fileRef = 73CB65D81EBACAD3001B6EFD /* MBProgressHUD+MJ.m */; };
 		73CB65DD1EBACAD3001B6EFD /* MBProgressHUD.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 73CB65D91EBACAD3001B6EFD /* MBProgressHUD.bundle */; };
 		73CB65DE1EBACAD3001B6EFD /* MBProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = 73CB65DB1EBACAD3001B6EFD /* MBProgressHUD.m */; };
@@ -79,6 +80,8 @@
 		735074CB1EB9BB3800DACA97 /* OCPDFGenerator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OCPDFGenerator.h; sourceTree = "<group>"; };
 		735074CC1EB9BB3800DACA97 /* OCPDFGenerator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OCPDFGenerator.m; sourceTree = "<group>"; };
 		735074CE1EB9BD9300DACA97 /* test.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = test.html; sourceTree = "<group>"; };
+		736955D81ED7DA12002BFCEB /* UIWebView+ConverToData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIWebView+ConverToData.h"; sourceTree = "<group>"; };
+		736955D91ED7DA12002BFCEB /* UIWebView+ConverToData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIWebView+ConverToData.m"; sourceTree = "<group>"; };
 		73CB65D71EBACAD3001B6EFD /* MBProgressHUD+MJ.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "MBProgressHUD+MJ.h"; sourceTree = "<group>"; };
 		73CB65D81EBACAD3001B6EFD /* MBProgressHUD+MJ.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "MBProgressHUD+MJ.m"; sourceTree = "<group>"; };
 		73CB65D91EBACAD3001B6EFD /* MBProgressHUD.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = MBProgressHUD.bundle; sourceTree = "<group>"; };
@@ -146,6 +149,8 @@
 				735074941EB9B9BC00DACA97 /* ViewController.m */,
 				735074CB1EB9BB3800DACA97 /* OCPDFGenerator.h */,
 				735074CC1EB9BB3800DACA97 /* OCPDFGenerator.m */,
+				736955D81ED7DA12002BFCEB /* UIWebView+ConverToData.h */,
+				736955D91ED7DA12002BFCEB /* UIWebView+ConverToData.m */,
 				735074961EB9B9BD00DACA97 /* Main.storyboard */,
 				735074991EB9B9BD00DACA97 /* Assets.xcassets */,
 				7350749B1EB9B9BE00DACA97 /* LaunchScreen.storyboard */,
@@ -331,6 +336,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				735074951EB9B9BC00DACA97 /* ViewController.m in Sources */,
+				736955DA1ED7DA12002BFCEB /* UIWebView+ConverToData.m in Sources */,
 				73CB65DE1EBACAD3001B6EFD /* MBProgressHUD.m in Sources */,
 				73CB65DC1EBACAD3001B6EFD /* MBProgressHUD+MJ.m in Sources */,
 				735074921EB9B9BB00DACA97 /* AppDelegate.m in Sources */,
